@@ -11,10 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -53,21 +54,22 @@ fun PresentationCard() {
             contentDescription = null,
             modifier = Modifier
                 .width(150.dp)
+                .testTag("Logo")
                 .align(Alignment.CenterHorizontally)
         )
         Text(
-            text = "Caique Brener",
+            text = stringResource(R.string.my_name),
             fontSize = 30.sp,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
             color = Color.White,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().testTag("Name Owner")
         )
         Text(
             text = "Android Developer in Build Process",
             fontSize = 24.sp,
             color = Color(0xFF3DDC84),
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().testTag("Job"),
             textAlign = TextAlign.Center
         )
 
@@ -87,14 +89,15 @@ fun InformationsCard(icon: Painter, information: String, modifier: Modifier) {
             Icon(
                 painter = icon, contentDescription = null, modifier = Modifier
                     .width(30.dp)
-                    .height(30.dp),
+                    .height(30.dp)
+                    .testTag("Icon"),
                 tint = colorResource(
                     id = R.color.green
                 )
             )
             Text(
                 text = information,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().testTag("Contact Informations"),
                 textAlign = TextAlign.Center,
                 color = Color.White
             )
@@ -111,6 +114,7 @@ fun SkeletonScreen() {
         modifier = Modifier
             .fillMaxHeight()
             .fillMaxWidth()
+            .testTag("Skeleton")
             .background(color = colorResource(id = R.color.background_app))
     ) {
         Row(
@@ -127,7 +131,7 @@ fun SkeletonScreen() {
                 .fillMaxWidth()
                 .fillMaxHeight()
         ) {
-            Column() {
+            Column {
                 InformationsCard(
                     icon = painterResource(id = R.drawable.ic_baseline_call_24),
                     information = "+55 (71) 98323-0048",
